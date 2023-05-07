@@ -27,7 +27,7 @@ services:
     depends_on:
       - "db"
     volumes:
-      - ./www:/var/www
+      - ./var/www:/var/www
 
   adminer:
     container_name: ${MY_NAME}_adminer
