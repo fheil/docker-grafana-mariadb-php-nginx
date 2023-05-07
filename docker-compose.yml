@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   db:
-    container_name: db
+    container_name: ${MY_NAME}_db
     image: mariadb:10.0
     restart: always
     environment:
@@ -16,7 +16,7 @@ services:
       - "127.0.0.1:3307:3306"      
 
   web:
-    container_name: nginx_php-fpm  
+    container_name: ${MY_NAME}_nginx_php-fpm  
     image: ${IMAGE_NAME}:${IMAGE_TAG}
     build: .
     restart: always
@@ -30,7 +30,7 @@ services:
       - ./www:/var/www
 
   adminer:
-    container_name: admin  
+    container_name: ${MY_NAME}_adminer
     image: adminer
     restart: always
     ports:
