@@ -1,12 +1,48 @@
 version: '3.5'
+
 services:
-  app:
+  db:
+    container_name: db
+    image: mariadb:10.0
+    restart: always
+    environment:
+#      MARIADB_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: example
+    networks:
+      - ${NETWORK_NAME}
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "127.0.0.1:3307:3306"      
+
+  web:
+    container_name: nginx_php-fpm  
     image: ${IMAGE_NAME}:${IMAGE_TAG}
     build: .
+    restart: always
     ports:
-    - ${WEB_PORT}:8080
-  
+      - ${WEB_PORT}:8080
+    networks:
+      - ${NETWORK_NAME}
+    depends_on:
+      - "db"
+    volumes:
+      - ./www:/var/www
 
+adminer:
+    container_name: admin  
+    image: adminer
+    restart: always
+    ports:
+      - ${ADMINER_PORT}:8080
+    networks:
+      - ${NETWORK_NAME}
+    depends_on:
+      - "db"
+
+networks:
+  ${NETWORK_NAME}:
+    driver: bridge
 #  sut:
 #    image: alpine:3.13
 #    depends_on:
