@@ -1,6 +1,7 @@
 ARG ALPINE_VERSION=3.17
 FROM alpine:${ALPINE_VERSION}
-LABEL Maintainer="Tim de Pater <code@trafex.nl>"
+LABEL Maintainer="Frank Heil <code@heil-level.de>"
+# Thanks to Tim de Pater for the originial varion
 LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.1 based on Alpine Linux."
 # Setup document root
 WORKDIR /var/www/html
@@ -24,6 +25,9 @@ RUN apk add --no-cache \
   php81-session \
   php81-xml \
   php81-xmlreader \
+  pigz \
+  cron \
+  vim \
   supervisor
 
 # Configure nginx - http
