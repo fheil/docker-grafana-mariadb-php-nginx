@@ -3,6 +3,10 @@ services:
   app:
     image: ${IMAGE_NAME}:${IMAGE_TAG}
     build: .
+    ports:
+    - 80:8080
+  
+
 #  sut:
 #    image: alpine:3.13
 #    depends_on:
