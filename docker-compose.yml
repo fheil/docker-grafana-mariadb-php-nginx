@@ -11,7 +11,7 @@ services:
     networks:
       - nginx_net
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ${BIND_DIR}/mysql:/var/lib/mysql
     ports:
       - "127.0.0.1:3307:3306"      
 
@@ -27,7 +27,7 @@ services:
     depends_on:
       - "db"
     volumes:
-      - ./var/www:/var/www
+      - ${BIND_DIR}/var/www:/var/www
 
   adminer:
     container_name: ${MY_NAME}_adminer
