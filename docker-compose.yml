@@ -9,7 +9,7 @@ services:
 #      MARIADB_ROOT_PASSWORD: example
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     networks:
-      - ${NETWORK_NAME}
+      - nginx_net
     volumes:
       - ./mysql:/var/lib/mysql
     ports:
@@ -23,7 +23,7 @@ services:
     ports:
       - ${WEB_PORT}:8080
     networks:
-      - ${NETWORK_NAME}
+      - nginx_net
     depends_on:
       - "db"
     volumes:
@@ -36,12 +36,12 @@ services:
     ports:
       - ${ADMINER_PORT}:8080
     networks:
-      - ${NETWORK_NAME}
+      - nginx_net
     depends_on:
       - "db"
 
 networks:
-  ${NETWORK_NAME}:
+  nginx_net:
     driver: bridge
 #  sut:
 #    image: alpine:3.13
