@@ -29,7 +29,7 @@ services:
     volumes:
       - ./www:/var/www
 
-adminer:
+   adminer:
     container_name: admin  
     image: adminer
     restart: always
