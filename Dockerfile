@@ -25,9 +25,6 @@ RUN apk add --no-cache \
   php81-session \
   php81-xml \
   php81-xmlreader \
-  pigz \
-  cron \
-  vim \
   supervisor
 
 # Configure nginx - http
