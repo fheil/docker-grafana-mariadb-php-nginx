@@ -12,7 +12,7 @@ services:
     volumes:
       - ${BIND_DIR}/mysql:/var/lib/mysql
     ports:
-      - "127.0.0.1:3307:3306"      
+      - "127.0.0.1:${MYSQL_PORT}:3306"      
 
   periodic-backup:
     ## this sections uses work from https://github.com/ricardolsmendes/docker-samples/
