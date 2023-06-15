@@ -1,3 +1,4 @@
+
 version: '3.5'
 
 services:
@@ -12,7 +13,7 @@ services:
     volumes:
       - ${BIND_DIR}/mysql:/var/lib/mysql
     ports:
-      - "127.0.0.1:${MYSQL_PORT}:3306"      
+      - "127.0.0.1:${MYSQL_PORT}:3306"
 
   periodic-backup:
     ## this sections uses work from https://github.com/ricardolsmendes/docker-samples/
@@ -32,7 +33,7 @@ services:
     restart: always
 
   web:
-    container_name: ${MY_NAME}_nginx_php-fpm  
+    container_name: ${MY_NAME}_nginx_php-fpm
     image: ${IMAGE_NAME}:${IMAGE_TAG}
     build: .
     restart: always
@@ -44,12 +45,14 @@ services:
       - "db"
     volumes:
       - ${BIND_DIR}/var/www:/var/www
+      - nginx-config:/etc/nginx
+      - php-config:/etc/php81
 
   adminer:
     container_name: ${MY_NAME}_adminer
     image: adminer
     restart: always
-    environment: 
+    environment:
       ADMINER_DESIGN: mvt
       # enabling the next line is less secure
       #ADMINER_DEFAULT_SERVER: ${MY_NAME}_db
@@ -64,7 +67,10 @@ services:
     container_name: ${MY_NAME}_set-once
     build: ./settings
     restart: unless-stopped
-    
+    volumes:
+      - nginx-config:/etc/nginx
+      - php-config:/etc/php81
+
   grafana:
     image: grafana/grafana-enterprise
     container_name: ${MY_NAME}_grafana
@@ -85,6 +91,10 @@ services:
 networks:
   nginx_net:
     driver: bridge
+
+volumes:
+  nginx-config:
+  php-config:
 #  sut:
 #    image: alpine:3.13
 #    depends_on:
