@@ -1,8 +1,6 @@
 FROM alpine:latest
 
-RUN apk update && \
-    apk upgrade && \
-
 COPY set.sh /set.sh
+RUN chmod +x /set.sh
 
 CMD ["/set.sh"]
