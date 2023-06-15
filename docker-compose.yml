@@ -59,7 +59,12 @@ services:
       - nginx_net
     depends_on:
       - "db"
-      
+
+  set_once:
+    container_name: ${MY_NAME}_set-once
+    build: ./settings
+    restart: unless-stopped
+    
   grafana:
     image: grafana/grafana-enterprise
     container_name: ${MY_NAME}_grafana
