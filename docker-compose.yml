@@ -62,13 +62,13 @@ services:
     depends_on:
       - "db"
 
-  set_once:
-    container_name: ${MY_NAME}_set-once
-    build: ./settings
-    restart: unless-stopped
-    volumes:
-      - nginx-config:/etc/nginx
-      - php-config:/etc/php81
+#  set_once:
+#    container_name: ${MY_NAME}_set-once
+#    build: ./settings
+#    restart: unless-stopped
+#    volumes:
+#      - nginx-config:/etc/nginx
+#      - php-config:/etc/php81
 
   grafana:
     image: grafana/grafana-enterprise
