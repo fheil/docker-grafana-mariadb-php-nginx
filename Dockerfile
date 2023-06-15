@@ -1,8 +1,8 @@
-ARG ALPINE_VERSION=3.17
+ARG ALPINE_VERSION=3.18
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Frank Heil <code@heil-level.de>"
 # Thanks to Tim de Pater for the originial varion
-LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.1 based on Alpine Linux."
+LABEL Description="Lightweight container with Nginx 1.24 & PHP 8.1 based on Alpine Linux."
 # Setup document root
 WORKDIR /var/www/html
 
