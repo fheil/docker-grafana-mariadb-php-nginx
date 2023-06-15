@@ -44,8 +44,8 @@ services:
       - "db"
     volumes:
       - ${BIND_DIR}/var/www:/var/www
-      - nginx-config:/etc/nginx
-      - php-config:/etc/php81
+#      - nginx-config:/etc/nginx
+#      - php-config:/etc/php81
 
   adminer:
     container_name: ${MY_NAME}_adminer
@@ -91,10 +91,11 @@ networks:
   nginx_net:
     driver: bridge
 
-volumes:
-  nginx-config:
-  php-config:
-#  sut:
+#volumes:
+#  nginx-config:
+#  php-config:
+
+#sut:
 #    image: alpine:3.13
 #    depends_on:
 #      - app
