@@ -85,7 +85,7 @@ services:
     networks:
       - nginx_net
     volumes:
-      - ${BIND_DIR}/var/lib/grafana:/var/lib/grafana
+      - ${BIND_DIR}/grafana/var/lib/grafana:/var/lib/grafana
     depends_on:
       - "db"
 
