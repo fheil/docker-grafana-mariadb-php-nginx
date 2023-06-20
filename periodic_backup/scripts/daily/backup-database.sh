@@ -1,4 +1,5 @@
 #!/bin/sh
+# 20260620 v1
 
 BACKUP_FOLDER=/backup
 NOW=$(date '+%Y%m%d')
