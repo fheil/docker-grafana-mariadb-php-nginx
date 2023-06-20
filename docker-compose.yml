@@ -44,6 +44,7 @@ services:
       - "db"
     volumes:
       - ${BIND_DIR}/var/www:/var/www
+      - ${BIND_DIR}/var/log/nginx:/var/log/nginx
       - ${BIND_DIR}/backup:/backup
 #      - nginx-config:/etc/nginx
 #      - php-config:/etc/php81
