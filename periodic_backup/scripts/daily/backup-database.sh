@@ -16,9 +16,11 @@ MBACKUP_DAYS=$MYSQL_KEEP_BACKUP_DAYS
 
 [ ! -d "$BACKUP_FOLDER" ] && mkdir --parents $BACKUP_FOLDER
 
-FILE=${BACKUP_FOLDER}/${NOW}_backup.sql.gz
+FILE=${BACKUP_FOLDER}/ozg.sql.gz
+ARCHIVEFILE=${BACKUP_FOLDER}/${NOW}_ozg.sql.gz
+
 $MARIADB-DUMP -h $MHOST -u $MUSER -p${MPASS} --databases $MDB | $GZIP -9 > $FILE
 
-ln -sf ${FILE} ${BACKUP_FOLDER}/ozg.sql.gz
+cp ${FILE} ${ARCHIVEFILE}
 
 find /backup/* -type f -mtime $MBACKUP_DAYS -name '*.gz' -delete
