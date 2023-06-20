@@ -6,7 +6,7 @@ NOW=$(date '+%Y%m%d')
 
 GZIP=$(which gzip)
 #MYSQLDUMP=$(which mysqldump)
-MARIADB-DUMP=$(which mariadb-dump)
+MARIADBDUMP=$(which mariadb-dump)
 
 ### MySQL Server Login info ###
 MDB=$MYSQL_DATABASE
@@ -20,7 +20,7 @@ MBACKUP_DAYS=$MYSQL_KEEP_BACKUP_DAYS
 FILE=${BACKUP_FOLDER}/ozg.sql.gz
 ARCHIVEFILE=${BACKUP_FOLDER}/${NOW}_ozg.sql.gz
 
-$MARIADB-DUMP -h $MHOST -u $MUSER -p${MPASS} --databases $MDB | $GZIP -9 > $FILE
+$MARIADBDUMP -h $MHOST -u $MUSER -p${MPASS} --databases $MDB | $GZIP -9 > $FILE
 
 cp ${FILE} ${ARCHIVEFILE}
 
