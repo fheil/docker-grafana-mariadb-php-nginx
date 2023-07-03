@@ -72,24 +72,24 @@ services:
 #      - nginx-config:/etc/nginx
 #      - php-config:/etc/php81
 
-  grafana:
-    image: grafana/grafana-enterprise
-    container_name: ${MY_NAME}_grafana
-    user: "$UID:$GID"
-    restart: unless-stopped
-    environment:
-     - GF_SERVER_ROOT_URL=http://localhost/
-     - GF_INSTALL_PLUGINS=grafana-clock-panel
-     - GF_AUTH_ANONYMOUS_ENABLED=${GF_AUTH_ANONYMOUS_ENABLED}
-     - GF_SECURITY_ALLOW_EMBEDDING=${GF_SECURITY_ALLOW_EMBEDDING}
-    ports:
-     - ${GRAFANA_PORT}:3000
-    networks:
-      - nginx_net
-    volumes:
-      - ${BIND_DIR}/grafana/var/lib/grafana:/var/lib/grafana
-    depends_on:
-      - "db"
+#  grafana:
+#    image: grafana/grafana-enterprise
+#    container_name: ${MY_NAME}_grafana
+#    user: "$UID:$GID"
+#    restart: unless-stopped
+#    environment:
+#     - GF_SERVER_ROOT_URL=http://localhost/
+#     - GF_INSTALL_PLUGINS=grafana-clock-panel
+#     - GF_AUTH_ANONYMOUS_ENABLED=${GF_AUTH_ANONYMOUS_ENABLED}
+#     - GF_SECURITY_ALLOW_EMBEDDING=${GF_SECURITY_ALLOW_EMBEDDING}
+#    ports:
+#     - ${GRAFANA_PORT}:3000
+#    networks:
+#      - nginx_net
+#    volumes:
+#      - ${BIND_DIR}/grafana/var/lib/grafana:/var/lib/grafana
+#    depends_on:
+#      - "db"
 
 networks:
   nginx_net:
