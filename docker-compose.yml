@@ -14,22 +14,22 @@ services:
     ports:
       - "127.0.0.1:${MYSQL_PORT}:3306"
 
-  periodic-backup:
-    ## this sections uses work from https://github.com/ricardolsmendes/docker-samples/
-    container_name: ${MY_NAME}_database-backup
-    build: ./periodic_backup
-    environment:
-      MYSQL_CONTAINER_NAME: ${MY_NAME}_db
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_KEEP_BACKUP_DAYS: ${MYSQL_KEEP_BACKUP_DAYS}
-    networks:
-      - nginx_net
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ${BIND_DIR}/backup:/backup
-    command: crond -f -d 8
-    restart: always
+#  periodic-backup:
+#    ## this sections uses work from https://github.com/ricardolsmendes/docker-samples/
+#    container_name: ${MY_NAME}_database-backup
+#    build: ./periodic_backup
+#    environment:
+#      MYSQL_CONTAINER_NAME: ${MY_NAME}_db
+#      MYSQL_DATABASE: ${MYSQL_DATABASE}
+#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#      MYSQL_KEEP_BACKUP_DAYS: ${MYSQL_KEEP_BACKUP_DAYS}
+#    networks:
+#      - nginx_net
+#    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+#      - ${BIND_DIR}/backup:/backup
+#    command: crond -f -d 8
+#    restart: always
 
   web:
     container_name: ${MY_NAME}_nginx_php-fpm
