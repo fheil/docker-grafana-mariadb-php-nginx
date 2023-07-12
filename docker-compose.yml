@@ -17,7 +17,12 @@ services:
   periodic-backup:
     ## this sections uses work from https://github.com/ricardolsmendes/docker-samples/
     container_name: ${MY_NAME}_database-backup
-    build: ./periodic_backup
+    build: 
+      context: ./periodic_backup
+      args: 
+        - HTTP_PROXY=${HTTP_PROXY}
+        - HTTPS_PROXY=${HTTPS_PROXY}
+        - NO_PROXY=${NO_PROXY}
     environment:
       MYSQL_CONTAINER_NAME: ${MY_NAME}_db
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -34,7 +39,12 @@ services:
   web:
     container_name: ${MY_NAME}_nginx_php-fpm
     image: ${IMAGE_NAME}:${IMAGE_TAG}
-    build: .
+    build: 
+      context: .
+      args: 
+        - HTTP_PROXY=${HTTP_PROXY}
+        - HTTPS_PROXY=${HTTPS_PROXY}
+        - NO_PROXY=${NO_PROXY}
     restart: always
     ports:
       - ${WEB_PORT}:8080
@@ -46,8 +56,6 @@ services:
       - ${BIND_DIR}/var/www:/var/www
       - ${BIND_DIR}/var/log/nginx:/var/log/nginx
       - ${BIND_DIR}/backup:/backup
-#      - nginx-config:/etc/nginx
-#      - php-config:/etc/php81
 
   adminer:
     container_name: ${MY_NAME}_adminer
@@ -78,8 +86,10 @@ services:
     user: "$UID:$GID"
     restart: unless-stopped
     environment:
+     - HTTP_PROXY=${HTTP_PROXY}
+     - HTTPS_PROXY=${HTTPS_PROXY}
      - GF_SERVER_ROOT_URL=http://localhost/
-#     - GF_INSTALL_PLUGINS=grafana-clock-panel
+     - GF_INSTALL_PLUGINS=grafana-clock-panel
      - GF_AUTH_ANONYMOUS_ENABLED=${GF_AUTH_ANONYMOUS_ENABLED}
      - GF_SECURITY_ALLOW_EMBEDDING=${GF_SECURITY_ALLOW_EMBEDDING}
     ports:
@@ -94,10 +104,6 @@ services:
 networks:
   nginx_net:
     driver: bridge
-
-#volumes:
-#  nginx-config:
-#  php-config:
 
 #sut:
 #    image: alpine:3.13
