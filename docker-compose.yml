@@ -102,8 +102,11 @@ services:
       - "db"
 
 networks:
-  nginx_net:
-    driver: bridge
+  network1:
+    name: nginx_net
+    external: true
+#  nginx_net:
+#    driver: bridge
 
 #sut:
 #    image: alpine:3.13
