@@ -102,7 +102,7 @@ services:
       - "db"
 
 networks:
-  network1:
+  nginx_net:
     name: nginx_net
     external: true
 #  nginx_net:
