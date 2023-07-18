@@ -84,7 +84,7 @@ services:
     image: grafana/grafana-enterprise
     container_name: ${MY_NAME}_grafana
     user: "$UID:$GID"
-    restart: unless-stopped
+    restart: always
     environment:
      - HTTP_PROXY=${HTTP_PROXY}
      - HTTPS_PROXY=${HTTPS_PROXY}
