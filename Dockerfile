@@ -16,7 +16,7 @@ RUN apk add --no-cache \
   php82-dom \
   php82-fpm \
   php82-gd \
-  php821-intl \
+  php82-intl \
   php82-mbstring \
   php82-mysqli \
   php82-opcache \
