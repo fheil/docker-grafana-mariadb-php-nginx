@@ -28,6 +28,7 @@ RUN apk add --no-cache \
   php82-xmlreader \
   pigz \
   vim \
+  zip \
   supervisor
 
 # Configure nginx - http
