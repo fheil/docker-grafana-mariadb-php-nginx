@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.18
+ARG ALPINE_VERSION=3.19
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Frank Heil <code@heil-level.de>"
 # Thanks to Tim de Pater for the originial varion
