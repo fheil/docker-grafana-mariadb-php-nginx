@@ -20,7 +20,6 @@ Repository: https://github.com/TrafeX/docker-php-nginx
 * The logs of all the services are redirected to the output of the Docker container (visible with `docker logs -f <container name>`)
 * Follows the KISS principle (Keep It Simple, Stupid) to make it easy to understand and adjust the image to your needs
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/trafex/php-nginx.svg)](https://hub.docker.com/r/trafex/php-nginx/)
 ![nginx 1.25](https://img.shields.io/badge/nginx-1.25-brightgreen.svg)
 ![php 8.2](https://img.shields.io/badge/php-8.2-brightgreen.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
