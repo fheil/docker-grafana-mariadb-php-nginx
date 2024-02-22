@@ -78,7 +78,7 @@ services:
 #    restart: unless-stopped
 #    volumes:
 #      - nginx-config:/etc/nginx
-#      - php-config:/etc/php81
+#      - php-config:/etc/php83
 
   grafana:
     image: grafana/grafana-enterprise
