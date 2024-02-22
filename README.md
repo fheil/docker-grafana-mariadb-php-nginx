@@ -1,11 +1,11 @@
-# Docker PHP-FPM 8.2 & Nginx 1.24 on Alpine Linux
+# Docker PHP-FPM 8.3 & Nginx 1.24 on Alpine Linux
 
 I need to rewrite this below...
 
 --- 8<---
 
 
-Example PHP-FPM 8.2 & Nginx 1.24 container image for Docker, built on [Alpine Linux](https://www.alpinelinux.org/).
+Example PHP-FPM 8.3 & Nginx 1.24 container image for Docker, built on [Alpine Linux](https://www.alpinelinux.org/).
 
 Repository: https://github.com/TrafeX/docker-php-nginx
 
@@ -13,7 +13,7 @@ Repository: https://github.com/TrafeX/docker-php-nginx
 * Built on the lightweight and secure Alpine Linux distribution
 * Multi-platform, supporting AMD4, ARMv6, ARMv7, ARM64
 * Very small Docker image size (+/-40MB)
-* Uses PHP 8.2 for better performance, lower CPU usage & memory footprint
+* Uses PHP 8.3 for better performance, lower CPU usage & memory footprint
 * Optimized for 100 concurrent users
 * Optimized to only use resources when there's traffic (by using PHP-FPM's `on-demand` process manager)
 * The services Nginx, PHP-FPM and supervisord run under a non-privileged user (nobody) to make it more secure
@@ -21,7 +21,7 @@ Repository: https://github.com/TrafeX/docker-php-nginx
 * Follows the KISS principle (Keep It Simple, Stupid) to make it easy to understand and adjust the image to your needs
 
 ![nginx 1.25](https://img.shields.io/badge/nginx-1.25-brightgreen.svg)
-![php 8.2](https://img.shields.io/badge/php-8.2-brightgreen.svg)
+![php 8.3](https://img.shields.io/badge/php-8.3-brightgreen.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## [![Trafex Consultancy](https://timdepater.com/logo/mini-logo.png)](https://timdepater.com?mtm_campaign=github)
