@@ -10,7 +10,8 @@ services:
     networks:
       - nginx_net
     volumes:
-      - ${BIND_DIR}/mysql:/var/lib/mysql
+      - ${BIND_DIR}/mysql/var/lib/mysql:/var/lib/mysql
+      - ${BIND_DIR}/mysql/etc/mysql/conf.d:/etc/mysql/conf.d
     ports:
       - "127.0.0.1:${MYSQL_PORT}:3306"
 
