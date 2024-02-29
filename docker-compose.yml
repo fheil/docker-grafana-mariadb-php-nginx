@@ -6,14 +6,14 @@ services:
     image: mariadb:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
     networks:
       - nginx_net
     volumes:
-      - ${BIND_DIR}/mysql/var/lib/mysql:/var/lib/mysql
-      - ${BIND_DIR}/mysql/etc/mysql/conf.d:/etc/mysql/conf.d
+      - ${BIND_DIR}/mariadb/var/lib/mysql:/var/lib/mysql
+      - ${BIND_DIR}/mariadb/etc/mysql/conf.d:/etc/mysql/conf.d
     ports:
-      - "127.0.0.1:${MYSQL_PORT}:3306"
+      - "127.0.0.1:${MARIADB_PORT}:3306"
 
   periodic-backup:
     ## this sections uses work from https://github.com/ricardolsmendes/docker-samples/
@@ -25,10 +25,10 @@ services:
         - HTTPS_PROXY=${HTTPS_PROXY}
         - NO_PROXY=${NO_PROXY}
     environment:
-      MYSQL_CONTAINER_NAME: ${MY_NAME}_db
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_KEEP_BACKUP_DAYS: ${MYSQL_KEEP_BACKUP_DAYS}
+      MARIADB_CONTAINER_NAME: ${MY_NAME}_db
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_KEEP_BACKUP_DAYS: ${MARIADB_KEEP_BACKUP_DAYS}
     networks:
       - nginx_net
     volumes:
