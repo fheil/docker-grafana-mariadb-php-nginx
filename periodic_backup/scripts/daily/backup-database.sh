@@ -20,7 +20,7 @@ MBACKUP_DAYS=$MARIADB_KEEP_BACKUP_DAYS
 FILE=${BACKUP_FOLDER}/ozg.sql.gz
 ARCHIVEFILE=${BACKUP_FOLDER}/${NOW}_ozg.sql.gz
 
-$MARIADBDUMP -h $MHOST -u $MUSER -p${MPASS} --databases $MDB | $GZIP -9 > $FILE
+$MARIADBDUMP -h $MHOST -u $MUSER -p${MPASS} --databases $MDB --events | $GZIP -9 > $FILE
 
 cp ${FILE} ${ARCHIVEFILE}
 
