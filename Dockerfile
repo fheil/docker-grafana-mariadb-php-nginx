@@ -31,10 +31,6 @@ RUN apk add --no-cache \
   zip \
   supervisor
 
-# Configure mariadb 
-#   envent_scheduler=ON
-COPY config/my.cnf /etc/mysql/conf.d
-
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
 # Configure nginx - default server
