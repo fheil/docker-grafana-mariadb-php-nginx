@@ -19,7 +19,7 @@ services:
       - nginx_net
     volumes:
       - ${BIND_DIR}/mariadb/var/lib/mysql:/var/lib/mysql
-      - ${BIND_DIR}/mariadb/etc/mysql/conf.d:/etc/mysql/conf.d
+      # - ${BIND_DIR}/mariadb/etc/mysql/conf.d:/etc/mysql/conf.d
       - ${BIND_DIR}/sql-initdb.d:/docker-entrypoint-initdb.d/:ro
     ports:
       - "127.0.0.1:${MARIADB_PORT}:3306"
