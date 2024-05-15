@@ -1,0 +1,62 @@
+services:
+  db:
+    container_name: ${MY_NAME}_db
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    networks:
+      - nginx_net
+    volumes:
+      - ${BIND_DIR}/mariadb/var/lib/mysql:/var/lib/mysql
+      - ${BIND_DIR}/mariadb/etc/mysql/conf.d:/etc/mysql/conf.d
+      - ${BIND_DIR}/sql-initdb.d:/docker-entrypoint-initdb.d/:ro
+    ports:
+      - "127.0.0.1:${MARIADB_PORT}:3306"
+    restart: always  
+
+  periodic-backup:
+    ## this sections uses work from https://github.com/ricardolsmendes/docker-samples/
+    container_name: ${MY_NAME}_database-backup
+    build: 
+      context: ./periodic_backup
+      args: 
+        - HTTP_PROXY=${HTTP_PROXY}
+        - HTTPS_PROXY=${HTTPS_PROXY}
+        - NO_PROXY=${NO_PROXY}
+    environment:
+      MARIADB_CONTAINER_NAME: ${MY_NAME}_db
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_KEEP_BACKUP_DAYS: ${MARIADB_KEEP_BACKUP_DAYS}
+    networks:
+      - nginx_net
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${BIND_DIR}/backup:/backup
+    command: crond -f -d 8
+    restart: always
+
+  adminer:
+    container_name: ${MY_NAME}_adminer
+    image: adminer
+    restart: always
+    environment:
+      ADMINER_DESIGN: mvt
+      # enabling the next line is less secure
+      #ADMINER_DEFAULT_SERVER: ${MY_NAME}_db
+    ports:
+      - ${ADMINER_PORT}:8080
+    networks:
+      - nginx_net
+    depends_on:
+      - "db"
+
+networks:
+  nginx_net:
+    name: nginx_net
+    external: true
+#  nginx_net:
+#    driver: bridge
