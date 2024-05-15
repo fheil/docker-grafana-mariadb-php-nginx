@@ -1,0 +1,33 @@
+services:
+  web:
+    container_name: ${MY_NAME}_nginx_php-fpm
+    image: ${IMAGE_NAME}:${IMAGE_TAG}
+    build: 
+      context: .
+      args: 
+        - HTTP_PROXY=${HTTP_PROXY}
+        - HTTPS_PROXY=${HTTPS_PROXY}
+        - NO_PROXY=${NO_PROXY}
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    ports:
+      - ${WEB_PORT}:8080
+    networks:
+      - nginx_net
+#    depends_on:
+#      - "db"
+    volumes:
+      - ${BIND_DIR}/var/www:/var/www
+      - ${BIND_DIR}/var/log/nginx:/var/log/nginx
+      - ${BIND_DIR}/backup:/backup
+
+networks:
+  nginx_net:
+    name: nginx_net
+    external: true
+#  nginx_net:
+#    driver: bridge
