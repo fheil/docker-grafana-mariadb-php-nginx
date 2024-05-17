@@ -27,7 +27,7 @@ services:
 networks:
 # nginx_net:
   my_net:
-    name: nginx_net
+#    name: nginx_net
     name: ${NETWORK_NAME}
     external: true
 #  nginx_net:
