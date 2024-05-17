@@ -17,17 +17,18 @@ services:
     ports:
       - ${WEB_PORT}:8080
     networks:
-      - nginx_net
-#    depends_on:
-#      - "db"
+#      - nginx_net
+       my_net: {}
     volumes:
       - ${BIND_DIR}/var/www:/var/www
       - ${BIND_DIR}/var/log/nginx:/var/log/nginx
       - ${BIND_DIR}/backup:/backup
 
 networks:
-  nginx_net:
+# nginx_net:
+  my_net:
     name: nginx_net
+    name: ${NETWORK_NAME}
     external: true
 #  nginx_net:
 #    driver: bridge
