@@ -1,5 +1,5 @@
 #!/bin/sh
-# 20260620 v1
+# 202601022 v2
 
 BACKUP_FOLDER=/backup
 NOW=$(date '+%Y%m%d')
@@ -25,4 +25,4 @@ $MARIADBDUMP -h $MHOST -u $MUSER -p${MPASS} $MOPTIONS --databases $MDB --events 
 
 cp ${FILE} ${ARCHIVEFILE}
 
-find /backup/* -type f -mtime $MBACKUP_DAYS -name '*.gz' -delete
+find /backup/* -type f -mtime +$MBACKUP_DAYS -name '*.gz' -delete
