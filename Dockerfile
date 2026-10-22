@@ -20,7 +20,6 @@ RUN apk add --no-cache \
   php85-intl \
   php85-mbstring \
   php85-mysqli \
-  php85-opcache \
   php85-openssl \
   php85-phar \
   php85-session \
@@ -33,8 +32,6 @@ RUN apk add --no-cache \
   vim \
   zip \
   supervisor
-
-
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -50,11 +47,11 @@ COPY config/php.ini ${PHP_INI_DIR}/conf.d/custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-#RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
-RUN chown -R nobody.nobody /var/www/html /var/lib/nginx /var/log/nginx
+#RUN chown -R nobody:nobody /var/www/html /run /var/lib/nginx /var/log/nginx
+RUN chown -R nobody:nobody /var/www/html /var/lib/nginx /var/log/nginx
 
 # Create symlink for php
-RUN ln -s /usr/bin/php85 /usr/bin/php
+#RUN ln -s /usr/bin/php85 /usr/bin/php
 
 # Switch to use a non-root user from here on
 USER nobody
