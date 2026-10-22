@@ -18,6 +18,12 @@ services:
     ports:
       - "127.0.0.1:${MARIADB_PORT}:3306"
     restart: always  
+    # Report "healthy" only once MariaDB accepts connections (ping succeeds even without credentials)
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
 
   periodic-backup:
     ## this sections uses work from https://github.com/ricardolsmendes/docker-samples/
@@ -53,7 +59,6 @@ services:
         - NO_PROXY=${NO_PROXY}
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MARIADB_DATABASE: ${MARIADB_DATABASE}
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
@@ -62,7 +67,8 @@ services:
     networks:
       - nginx_net
     depends_on:
-      - "db"
+      db:
+        condition: service_healthy
     volumes:
       - ${BIND_DIR}/var/www:/var/www
       - ${BIND_DIR}/var/log/nginx:/var/log/nginx
