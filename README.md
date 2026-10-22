@@ -1,11 +1,11 @@
-# Docker Grafana, MariaDB, PHP-FPM 8.3 & Nginx 1.24 on Alpine Linux
+# Docker Grafana, MariaDB, PHP-FPM 8.5.12 & Nginx 1.30.6 on Alpine Linux
 
 I need to rewrite this below...
 
 --- 8<---
 
 
-Example PHP-FPM 8.3 & Nginx 1.24 container image for Docker, built on [Alpine Linux](https://www.alpinelinux.org/).
+Example PHP-FPM 8.5.12 & Nginx 1.30.6 container image for Docker, built on [Alpine Linux](https://www.alpinelinux.org/).
 
 Repository: https://github.com/TrafeX/docker-php-nginx
 
