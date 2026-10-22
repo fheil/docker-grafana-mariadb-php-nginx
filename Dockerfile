@@ -2,7 +2,7 @@ ARG ALPINE_VERSION=3.24
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Frank Heil <code@heil-level.de>"
 # Thanks to Tim de Pater for the originial version
-LABEL Description="Lightweight container with Nginx 1.28 & PHP 8.5 based on Alpine Linux."
+LABEL Description="Lightweight container with Nginx 1.30 & PHP 8.5 based on Alpine Linux."
 # Setup document root
 WORKDIR /var/www/html
 
@@ -39,7 +39,7 @@ COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY config/conf.d /etc/nginx/conf.d/
 
 # Configure PHP-FPM
-ENV PHP_INI_DIR /etc/php85
+ENV PHP_INI_DIR=/etc/php85
 COPY config/fpm-pool.conf ${PHP_INI_DIR}/php-fpm.d/www.conf
 COPY config/php.ini ${PHP_INI_DIR}/conf.d/custom.ini
 
