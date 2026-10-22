@@ -10,6 +10,7 @@ services:
         - NO_PROXY=${NO_PROXY}
     restart: always
     environment:
+      IMAGE_TAG: ${IMAGE_TAG}
       MARIADB_DATABASE: ${MARIADB_DATABASE}
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
